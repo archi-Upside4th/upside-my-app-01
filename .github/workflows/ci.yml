@@ -24,9 +24,7 @@ jobs:
           cache: "pip"
 
       - name: Install Dependencies
-        run: pip install -r requirements.txt
+        run: pip install uv && uv sync --dev
 
       - name: run tests
-        run: pytest --tb=short -q
-
-# TODO: Install dependencies and run tests
+        run: uv run pytest --tb=short -q
