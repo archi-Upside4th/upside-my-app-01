@@ -38,3 +38,12 @@ jobs:
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
 
 # TODO: Publish to GHCR
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        id: docker-build-push
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
